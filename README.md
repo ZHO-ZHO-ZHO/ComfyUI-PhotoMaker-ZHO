@@ -1,2 +1,3 @@
-# ComfyUI-PhotoMaker（WIP）
-Unofficial implementation of PhotoMaker for ComfyUI（WIP）
+# ComfyUI PhotoMaker（WIP）
+Unofficial implementation of [PhotoMaker](https://github.com/TencentARC/PhotoMaker) for ComfyUI（WIP）
+测试中 Testing……
