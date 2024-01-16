@@ -10,7 +10,7 @@ from .style_template import styles
 
 
 # global variable
-photomaker_path = "TencentARC/PhotoMaker"
+photomaker_path = hf_hub_download(repo_id="TencentARC/PhotoMaker", filename="photomaker-v1.bin", repo_type="model")
 device = "cuda" if torch.cuda.is_available() else "cpu"
 STYLE_NAMES = list(styles.keys())
 DEFAULT_STYLE_NAME = "Photographic (Default)"
