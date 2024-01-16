@@ -15,6 +15,9 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 STYLE_NAMES = list(styles.keys())
 DEFAULT_STYLE_NAME = "Photographic (Default)"
 
+def apply_style(style_name: str, positive: str, negative: str = "") -> tuple[str, str]:
+        p, n = styles.get(style_name, styles[DEFAULT_STYLE_NAME])
+        return p.replace("{prompt}", positive), n + ' ' + negative
 
 #batch
 class PhotoMaker_Batch_Zho:
