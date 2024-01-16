@@ -65,7 +65,7 @@ class PhotoMaker_Zho:
         pipe.scheduler = EulerDiscreteScheduler.from_config(pipe.scheduler.config)
         pipe.fuse_lora()
 
-        input_id_images = ref_image
+        input_id_images = [ref_image]
       
         # apply the style template
         prompt, negative_prompt = apply_style(style_name, prompt, negative_prompt)
