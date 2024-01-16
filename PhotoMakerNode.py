@@ -83,8 +83,8 @@ class PhotoMaker_Batch_Zho:
             start_merge_step = 30
 
         generator = torch.Generator(device=device).manual_seed(seed)
-      
-        images = pipe(
+   
+        output = pipe(
             prompt=prompt,
             input_id_images=input_id_images,
             negative_prompt=negative_prompt,
@@ -94,9 +94,16 @@ class PhotoMaker_Batch_Zho:
             generator=generator,
             guidance_scale=guidance_scale,
         )
-      
-        return (images,)
 
+        # 检查返回的是单个图像还是图像列表
+        if isinstance(output.images, list):
+            # 如果是列表，选择第一张图像
+            image = output.images[0]
+        else:
+            # 否则，直接使用返回的图像
+            image = output.images
+
+        return (image,)
 
 # Dictionary to export the node
 NODE_CLASS_MAPPINGS = {
