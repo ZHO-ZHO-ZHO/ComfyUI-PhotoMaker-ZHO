@@ -36,7 +36,6 @@ class PhotoMaker_Batch_Zho:
                 "style_strength_ratio": ("INT", {"default": 20, "min": 1, "max": 50, "display": "slider"}),
                 "steps": ("INT", {"default": 50, "min": 1, "max": 100, "step": 1, "display": "slider"}),
                 "guidance_scale": ("FLOAT", {"default": 5, "min": 0.1, "max": 10.0, "step": 0.1, "display": "slider"}),
-                "batch_size": ("INT", {"default": 1, "min": 1, "max": 4, "display": "slider"}),
                 "seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
             }
         }
@@ -46,7 +45,7 @@ class PhotoMaker_Batch_Zho:
     FUNCTION = "process_images"
     CATEGORY = "📷PhotoMaker"
 
-    def process_images(self, base_model_path, ref_images_path, prompt, negative_prompt, style_name, style_strength_ratio, steps, guidance_scale, batch_size, seed):
+    def process_images(self, base_model_path, ref_images_path, prompt, negative_prompt, style_name, style_strength_ratio, steps, guidance_scale, seed):
 
         # Load base model
         pipe = PhotoMakerStableDiffusionXLPipeline.from_pretrained(
@@ -89,12 +88,12 @@ class PhotoMaker_Batch_Zho:
             prompt=prompt,
             input_id_images=input_id_images,
             negative_prompt=negative_prompt,
-            num_images_per_prompt=batch_size,
+            num_images_per_prompt=1,
             num_inference_steps=steps,
             start_merge_step=start_merge_step,
             generator=generator,
             guidance_scale=guidance_scale,
-        ).images[0]
+        )
       
         return (images,)
 
