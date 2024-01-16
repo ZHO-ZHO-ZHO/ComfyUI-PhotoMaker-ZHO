@@ -15,6 +15,9 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 STYLE_NAMES = list(styles.keys())
 DEFAULT_STYLE_NAME = "Photographic (Default)"
 
+def apply_style(style_name: str, positive: str, negative: str = "") -> tuple[str, str]:
+        p, n = styles.get(style_name, styles[DEFAULT_STYLE_NAME])
+        return p.replace("{prompt}", positive), n + ' ' + negative
 
 class PhotoMaker_Zho:
     def __init__(self):
@@ -41,10 +44,6 @@ class PhotoMaker_Zho:
     RETURN_NAMES = ("image",)
     FUNCTION = "process_images"
     CATEGORY = "📷PhotoMaker"
-
-    def apply_style(style_name: str, positive: str, negative: str = "") -> tuple[str, str]:
-        p, n = styles.get(style_name, styles[DEFAULT_STYLE_NAME])
-        return p.replace("{prompt}", positive), n + ' ' + negative
 
     def process_images(self, base_model_path, ref_image, prompt, negative_prompt, style_name, style_strength_ratio, steps, guidance_scale, batch_size, seed):
 
@@ -117,10 +116,6 @@ class PhotoMaker_Batch_Zho:
     RETURN_NAMES = ("image",)
     FUNCTION = "process_images"
     CATEGORY = "📷PhotoMaker"
-
-    def apply_style(style_name: str, positive: str, negative: str = "") -> tuple[str, str]:
-        p, n = styles.get(style_name, styles[DEFAULT_STYLE_NAME])
-        return p.replace("{prompt}", positive), n + ' ' + negative
 
     def process_images(self, base_model_path, ref_images_path, prompt, negative_prompt, style_name, style_strength_ratio, steps, guidance_scale, batch_size, seed):
 
