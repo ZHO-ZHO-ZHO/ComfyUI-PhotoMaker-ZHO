@@ -103,7 +103,7 @@ class PhotoMaker_Batch_Zho:
             # 否则，直接使用返回的图像
             image = output.images
 
-        return (image,)
+        return image
 
 # Dictionary to export the node
 NODE_CLASS_MAPPINGS = {
