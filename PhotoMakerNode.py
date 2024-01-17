@@ -7,7 +7,8 @@ from diffusers import EulerDiscreteScheduler
 from .pipeline import PhotoMakerStableDiffusionXLPipeline
 from huggingface_hub import hf_hub_download
 from .style_template import styles
-
+from PIL import Image
+import numpy as np
 
 # global variable
 photomaker_path = hf_hub_download(repo_id="TencentARC/PhotoMaker", filename="photomaker-v1.bin", repo_type="model")
@@ -67,12 +68,13 @@ class PhotoMaker_Batch_Zho:
         
         # Process images
         image_basename_list = os.listdir(ref_images_path)
+        #image_path_list = sorted([os.path.join(ref_images_path, basename) for basename in image_basename_list])
         image_path_list = [
             os.path.join(ref_images_path, basename) 
             for basename in image_basename_list
             if not basename.startswith('.') and basename.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.webp'))  # 只包括有效的图像文件
         ]
-            
+
         input_id_images = [load_image(image_path) for image_path in image_path_list]
       
         # apply the style template
@@ -83,7 +85,7 @@ class PhotoMaker_Batch_Zho:
             start_merge_step = 30
 
         generator = torch.Generator(device=device).manual_seed(seed)
-   
+
         output = pipe(
             prompt=prompt,
             input_id_images=input_id_images,
@@ -93,17 +95,32 @@ class PhotoMaker_Batch_Zho:
             start_merge_step=start_merge_step,
             generator=generator,
             guidance_scale=guidance_scale,
+            return_dict=False
         )
 
-        # 检查返回的是单个图像还是图像列表
-        if isinstance(output.images, list):
-            # 如果是列表，选择第一张图像
-            image = output.images[0]
+        # 检查输出类型并相应处理
+        if isinstance(output, tuple):
+            # 当返回的是元组时，第一个元素是图像列表
+            images_list = output[0]
         else:
-            # 否则，直接使用返回的图像
-            image = output.images
+            # 如果返回的是 StableDiffusionXLPipelineOutput，需要从中提取图像
+            images_list = output.images
 
-        return image
+        # 转换图像为 torch.Tensor，并调整维度顺序为 NHWC
+        images_tensors = []
+        for img in images_list:
+            # 将 PIL.Image 转换为 numpy.ndarray
+            img_array = np.array(img)
+            # 转换 numpy.ndarray 为 torch.Tensor
+            img_tensor = torch.from_numpy(img_array).float() / 255.
+            # 转换图像格式为 CHW (如果需要)
+            if img_tensor.ndim == 3 and img_tensor.shape[-1] == 3:
+                img_tensor = img_tensor.permute(2, 0, 1)
+            # 添加批次维度并转换为 NHWC
+            img_tensor = img_tensor.unsqueeze(0).permute(0, 2, 3, 1)
+            images_tensors.append(img_tensor)
+
+        return images_tensors
 
 # Dictionary to export the node
 NODE_CLASS_MAPPINGS = {
