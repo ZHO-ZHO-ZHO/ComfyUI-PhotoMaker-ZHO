@@ -13,11 +13,18 @@ Unofficial implementation of [PhotoMaker](https://github.com/TencentARC/PhotoMak
 ![Dingtalk_20240117161736](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/07c924ab-3ee5-4919-87bc-ac49c28914f1)
 
 
+单张参考与多张参考的对比：
+
+![Dingtalk_20240117201650](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/e7bccd61-7855-46c2-a6bc-31b34e742927)
+
+![Dingtalk_20240117201201](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/6bbcfcf9-9027-4c6f-9be1-750971b7848c)
+
+
 ## 项目介绍 | Info
 
 - 来自对[PhotoMaker](https://github.com/TencentARC/PhotoMaker)的非官方实现
   
-- 版本：V1.0
+- 版本：V1.5 
 
 
 ## 视频演示
@@ -55,6 +62,8 @@ https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/8718a70e-a5d7
 ## 更新日志
 
 - 20240117
+
+  新增单张图输入，并给出对比图
 
   修复bug，初版上线
 
