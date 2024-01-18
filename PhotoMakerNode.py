@@ -159,19 +159,13 @@ class PhotoMakerAdapterLoader_local_Node_Zho:
 
 
 class ImagePreprocessingNode_Zho:
-    def __init__(self, ref_image=None, ref_images_path=None, mode="single"):
+    def __init__(self, ref_image=None):
         self.ref_image = ref_image
-        self.ref_images_path = ref_images_path
-        self.mode = mode
 
     @classmethod
     def INPUT_TYPES(cls):
         return {
             "required": {
-                "ref_images_path": ("STRING", {"default": "path/to/images"}),  # 图像文件夹路径
-                "mode": (["single", "multiple"], {"default": "multiple"})  # 选择模式
-            },
-            "optional": {
                 "ref_image": ("IMAGE",)  # 单张图像（可选）
             }
         }
@@ -180,32 +174,45 @@ class ImagePreprocessingNode_Zho:
     FUNCTION = "preprocess_image"
     CATEGORY = "📷PhotoMaker"
   
-    def preprocess_image(self, ref_image=None, ref_images_path=None, mode="single"):
+    def preprocess_image(self, ref_image=None):
+        # 单张图像处理
+        pil_images = []
+        for image in ref_image:
+            image_np = (255. * image.cpu().numpy().squeeze()).clip(0, 255).astype(np.uint8)
+            pil_image = Image.fromarray(image_np)
+            pil_images.append(pil_image)
+        return pil_images
+
+class ImageFromFolder_Zho:
+    def __init__(self, ref_images_path=None):
+        self.ref_images_path = ref_images_path
+
+    @classmethod
+    def INPUT_TYPES(cls):
+        return {
+            "required": {
+                "ref_images_path": ("STRING", {"default": "path/to/images"}),  # 图像文件夹路径
+            }
+        }
+
+    RETURN_TYPES = ("IMAGE",)
+    FUNCTION = "load_image_from_folder"
+    CATEGORY = "📷PhotoMaker"
+  
+    def load_image_from_folder(self, ref_images_path=None):
+        pil_images = []
         # 使用传入的参数更新类属性
-        ref_image = ref_image if ref_image is not None else ref_image
-        ref_images_path = ref_images_path if ref_images_path is not None else ref_images_path
-        mode = mode
-
-        if mode == "single" and ref_image is not None:
-            # 单张图像处理
-            pil_images = []
-            for image in ref_image:
-                image_np = (255. * image.cpu().numpy().squeeze()).clip(0, 255).astype(np.uint8)
-                pil_image = Image.fromarray(image_np)
-                pil_images.append(pil_image)
-            return pil_images
-        elif mode == "multiple":
-            # 多张图像路径处理
-            image_basename_list = os.listdir(ref_images_path)
-            image_path_list = [
-                os.path.join(ref_images_path, basename) 
-                for basename in image_basename_list
-                if not basename.startswith('.') and basename.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.webp'))
-            ]
-            return [load_image(image_path) for image_path in image_path_list]
-        else:
-            raise ValueError("Invalid mode. Choose 'single' or 'multiple'.")
-
+        image_basename_list = os.listdir(ref_images_path)
+        image_path_list = [
+            os.path.join(ref_images_path, basename) 
+            for basename in image_basename_list
+            if not basename.startswith('.') and basename.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.webp'))
+        ]
+        
+        for image_path in image_path_list:
+            pil_images.append(load_image(image_path))
+            
+        return pil_images
 
 class CompositeImageGenerationNode_Zho:
     def __init__(self):
@@ -288,6 +295,7 @@ NODE_CLASS_MAPPINGS = {
     "PhotoMakerAdapter_Loader_fromhub": PhotoMakerAdapterLoader_fromhub_Node_Zho,
     "PhotoMakerAdapter_Loader_local": PhotoMakerAdapterLoader_local_Node_Zho,
     "Ref_Image_Preprocessing": ImagePreprocessingNode_Zho,
+    "Image_From_Folder": ImageFromFolder_Zho,
     "PhotoMaker_Generation": CompositeImageGenerationNode_Zho
 }
 
@@ -297,5 +305,6 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "PhotoMakerAdapter_Loader_fromhub": "📷PhotoMaker Adapter Loader from hub🤗",
     "PhotoMakerAdapter_Loader_local": "📷PhotoMaker Adapter Loader locally",
     "Ref_Image_Preprocessing": "📷Ref Image Preprocessing",
+    "Image_From_Folder": "📷Image From Folder",
     "PhotoMaker_Generation": "📷PhotoMaker Generation"
 }
