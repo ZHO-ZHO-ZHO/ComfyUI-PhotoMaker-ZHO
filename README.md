@@ -30,7 +30,9 @@ Unofficial implementation of [PhotoMaker](https://github.com/TencentARC/PhotoMak
 
 - 来自对[PhotoMaker](https://github.com/TencentARC/PhotoMaker)的非官方实现
   
-- 版本：V2.0 节点拆分 + 支持本地模型 + 支持自定义尺寸 +提速3倍
+- 版本：V2.1 节点拆分 + 支持本地模型 + 支持自定义尺寸 +提速3倍 + 支持多图直接输入
+
+![Dingtalk_20240119022341](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/78595f2c-7f87-477a-9896-007dd24fe8c9)
 
 
 ## 视频演示
@@ -56,8 +58,8 @@ https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/d58af6e7-d0f3
     - 📷PhotoMaker Adapter Loader locally：支持加载本地模型，输入 photomaker-v1.bin 模型所在路径即可
 
 - 参考图预处理 | 📷Ref Image Preprocessing
-    - 单图模式 | Single：接入单张图像（非必要项）
-    - 多图模式 | Multiple：自动读取路径中的所有图像
+    - 直接模式 | Direct_input：接入单/多张图像（非必要项）
+    - 路径模式 | Path_input：自动读取路径中的所有图像
 
 - PhotoMaker 生成 | 📷PhotoMaker Generation
     - pipe：接入模型
@@ -135,6 +137,10 @@ https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/d58af6e7-d0f3
 
 
 ## 更新日志
+
+- 20240119
+
+  更新为 V2.1：参考图改为直接输入/路径输入两种新模式，其中直接输入支持多图
 
 - 20240118
 
