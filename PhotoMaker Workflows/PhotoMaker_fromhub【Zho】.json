@@ -1,0 +1,281 @@
+{
+  "last_node_id": 18,
+  "last_link_id": 18,
+  "nodes": [
+    {
+      "id": 14,
+      "type": "Ref_Image_Preprocessing",
+      "pos": [
+        1540,
+        2590
+      ],
+      "size": {
+        "0": 330,
+        "1": 82
+      },
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "ref_image",
+          "type": "IMAGE",
+          "link": 14,
+          "slot_index": 0
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            13
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Ref_Image_Preprocessing"
+      },
+      "widgets_values": [
+        "/content/ComfyUI/output",
+        "multiple"
+      ]
+    },
+    {
+      "id": 15,
+      "type": "LoadImage",
+      "pos": [
+        1130,
+        2570
+      ],
+      "size": {
+        "0": 390,
+        "1": 510
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            14
+          ],
+          "shape": 3
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "download (1).jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 17,
+      "type": "BaseModel_Loader_fromhub",
+      "pos": [
+        1130,
+        2460
+      ],
+      "size": [
+        390,
+        60
+      ],
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "pipe",
+          "type": "MODEL",
+          "links": [
+            16
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BaseModel_Loader_fromhub"
+      },
+      "widgets_values": [
+        "SG161222/RealVisXL_V3.0"
+      ]
+    },
+    {
+      "id": 18,
+      "type": "PhotoMakerAdapter_Loader_fromhub",
+      "pos": [
+        1540,
+        2460
+      ],
+      "size": {
+        "0": 330,
+        "1": 82
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pipe",
+          "type": "MODEL",
+          "link": 16
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            18
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PhotoMakerAdapter_Loader_fromhub"
+      },
+      "widgets_values": [
+        "TencentARC/PhotoMaker",
+        "photomaker-v1.bin"
+      ]
+    },
+    {
+      "id": 16,
+      "type": "PreviewImage",
+      "pos": [
+        1890,
+        2460
+      ],
+      "size": {
+        "0": 360,
+        "1": 620
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 15
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 13,
+      "type": "PhotoMaker_Generation",
+      "pos": [
+        1540,
+        2720
+      ],
+      "size": {
+        "0": 330,
+        "1": 360
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pipe",
+          "type": "MODEL",
+          "link": 18
+        },
+        {
+          "name": "pil_image",
+          "type": "IMAGE",
+          "link": 13
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            15
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PhotoMaker_Generation"
+      },
+      "widgets_values": [
+        "a woman img, retro futurism, retro game",
+        "asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth",
+        "Cinematic",
+        20,
+        50,
+        5,
+        363594486247783,
+        "fixed",
+        768,
+        1280
+      ]
+    }
+  ],
+  "links": [
+    [
+      13,
+      14,
+      0,
+      13,
+      1,
+      "IMAGE"
+    ],
+    [
+      14,
+      15,
+      0,
+      14,
+      0,
+      "IMAGE"
+    ],
+    [
+      15,
+      13,
+      0,
+      16,
+      0,
+      "IMAGE"
+    ],
+    [
+      16,
+      17,
+      0,
+      18,
+      0,
+      "MODEL"
+    ],
+    [
+      18,
+      18,
+      0,
+      13,
+      0,
+      "MODEL"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
