@@ -172,6 +172,12 @@ https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/d58af6e7-d0f3
     ![image](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/973b8b6b-9195-4044-b75d-bd833bd6421e)
 
 
+## Stars 
+
+[![Star History Chart](https://api.star-history.com/svg?repos=ZHO-ZHO-ZHO/ComfyUI-PhotoMaker&type=Date)](https://star-history.com/#ZHO-ZHO-ZHO/ComfyUI-PhotoMaker&Date)
+
+
+
 ## Credits
 
 感谢[@erLin](https://twitter.com/eviljer)对ComfyUI 的图像张量 Shape (N, H, W, C)的提醒，帮助我成功修复了bug！
