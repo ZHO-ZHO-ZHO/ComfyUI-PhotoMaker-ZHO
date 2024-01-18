@@ -188,9 +188,12 @@ class ImagePreprocessingNode_Zho:
 
         if mode == "single" and ref_image is not None:
             # 单张图像处理
-            image_np = (255. * ref_image.cpu().numpy().squeeze()).clip(0, 255).astype(np.uint8)
-            pil_image = Image.fromarray(image_np)
-            return [pil_image]
+            pil_images = []
+            for image in ref_image:
+                image_np = (255. * image.cpu().numpy().squeeze()).clip(0, 255).astype(np.uint8)
+                pil_image = Image.fromarray(image_np)
+                pil_images.append(pil_image)
+            return pil_images
         elif mode == "multiple":
             # 多张图像路径处理
             image_basename_list = os.listdir(ref_images_path)
@@ -219,8 +222,8 @@ class CompositeImageGenerationNode_Zho:
                 "steps": ("INT", {"default": 50, "min": 1, "max": 100, "step": 1, "display": "slider"}),
                 "guidance_scale": ("FLOAT", {"default": 5, "min": 0, "max": 10}),
                 "seed": ("INT", {"default": 0, "min": 0, "max": 0xffffffffffffffff}),
-                "width": ("INT", {"default": 1024, "min": 512, "max": 2048, "step": 32}),
-                "height": ("INT", {"default": 1024, "min": 512, "max": 2048, "step": 32}), 
+                "width": ("INT", {"default": 1024, "min": 512, "max": 2048, "step": 32, "display": "slider"}),
+                "height": ("INT", {"default": 1024, "min": 512, "max": 2048, "step": 32, "display": "slider"}), 
                 "pipe": ("MODEL",),
                 "pil_image": ("IMAGE",)
             }
