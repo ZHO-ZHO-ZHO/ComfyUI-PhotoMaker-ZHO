@@ -1,0 +1,405 @@
+{
+  "last_node_id": 25,
+  "last_link_id": 31,
+  "nodes": [
+    {
+      "id": 4,
+      "type": "Ref_Image_Preprocessing",
+      "pos": [
+        610,
+        420
+      ],
+      "size": {
+        "0": 320,
+        "1": 82
+      },
+      "flags": {},
+      "order": 4,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "ref_image",
+          "type": "IMAGE",
+          "link": 4
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            5
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Ref_Image_Preprocessing"
+      },
+      "widgets_values": [
+        "path/to/images",
+        "direct_Input"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "PhotoMakerAdapter_Loader_fromhub",
+      "pos": [
+        610,
+        290
+      ],
+      "size": {
+        "0": 320,
+        "1": 82
+      },
+      "flags": {},
+      "order": 3,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pipe",
+          "type": "MODEL",
+          "link": 6
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            14
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PhotoMakerAdapter_Loader_fromhub"
+      },
+      "widgets_values": [
+        "TencentARC/PhotoMaker",
+        "photomaker-v1.bin"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "BaseModel_Loader_fromhub",
+      "pos": [
+        270,
+        290
+      ],
+      "size": {
+        "0": 320,
+        "1": 60
+      },
+      "flags": {},
+      "order": 0,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "pipe",
+          "type": "MODEL",
+          "links": [
+            6
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "BaseModel_Loader_fromhub"
+      },
+      "widgets_values": [
+        "SG161222/RealVisXL_V3.0"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "LoadImage",
+      "pos": [
+        270,
+        400
+      ],
+      "size": {
+        "0": 320,
+        "1": 440
+      },
+      "flags": {},
+      "order": 1,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            4
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "MASK",
+          "type": "MASK",
+          "links": null,
+          "shape": 3
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoadImage"
+      },
+      "widgets_values": [
+        "download.jpg",
+        "image"
+      ]
+    },
+    {
+      "id": 10,
+      "type": "LoRALoader",
+      "pos": [
+        950,
+        290
+      ],
+      "size": {
+        "0": 315,
+        "1": 82
+      },
+      "flags": {},
+      "order": 5,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pipe",
+          "type": "MODEL",
+          "link": 14
+        }
+      ],
+      "outputs": [
+        {
+          "name": "MODEL",
+          "type": "MODEL",
+          "links": [
+            17
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "LoRALoader"
+      },
+      "widgets_values": [
+        "xl_more_art-full.safetensors",
+        0.7000000000000001
+      ]
+    },
+    {
+      "id": 1,
+      "type": "NEW_PhotoMaker_Generation",
+      "pos": [
+        950,
+        420
+      ],
+      "size": {
+        "0": 320,
+        "1": 420
+      },
+      "flags": {},
+      "order": 6,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "pipe",
+          "type": "MODEL",
+          "link": 17
+        },
+        {
+          "name": "pil_image",
+          "type": "IMAGE",
+          "link": 5,
+          "slot_index": 1
+        },
+        {
+          "name": "positive",
+          "type": "STRING",
+          "link": 1,
+          "widget": {
+            "name": "positive"
+          }
+        },
+        {
+          "name": "negative",
+          "type": "STRING",
+          "link": 2,
+          "widget": {
+            "name": "negative"
+          }
+        }
+      ],
+      "outputs": [
+        {
+          "name": "IMAGE",
+          "type": "IMAGE",
+          "links": [
+            31
+          ],
+          "shape": 3,
+          "slot_index": 0
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "NEW_PhotoMaker_Generation"
+      },
+      "widgets_values": [
+        "",
+        "",
+        4,
+        20,
+        50,
+        5,
+        1024,
+        1024,
+        0,
+        "fixed"
+      ]
+    },
+    {
+      "id": 25,
+      "type": "PreviewImage",
+      "pos": [
+        1295,
+        290
+      ],
+      "size": [
+        530,
+        550
+      ],
+      "flags": {},
+      "order": 7,
+      "mode": 0,
+      "inputs": [
+        {
+          "name": "images",
+          "type": "IMAGE",
+          "link": 31
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "PreviewImage"
+      }
+    },
+    {
+      "id": 2,
+      "type": "Prompt_Styler",
+      "pos": [
+        610,
+        550
+      ],
+      "size": [
+        320,
+        290
+      ],
+      "flags": {},
+      "order": 2,
+      "mode": 0,
+      "outputs": [
+        {
+          "name": "positive_prompt",
+          "type": "STRING",
+          "links": [
+            1
+          ],
+          "shape": 3,
+          "slot_index": 0
+        },
+        {
+          "name": "negative_prompt",
+          "type": "STRING",
+          "links": [
+            2
+          ],
+          "shape": 3,
+          "slot_index": 1
+        }
+      ],
+      "properties": {
+        "Node name for S&R": "Prompt_Styler"
+      },
+      "widgets_values": [
+        "a woman img, retro futurism, retro game",
+        "asymmetry, worst quality, low quality, illustration, 3d, 2d, painting, cartoons, sketch), open mouth",
+        "Photographic (Default)"
+      ]
+    }
+  ],
+  "links": [
+    [
+      1,
+      2,
+      0,
+      1,
+      2,
+      "STRING"
+    ],
+    [
+      2,
+      2,
+      1,
+      1,
+      3,
+      "STRING"
+    ],
+    [
+      4,
+      3,
+      0,
+      4,
+      0,
+      "IMAGE"
+    ],
+    [
+      5,
+      4,
+      0,
+      1,
+      1,
+      "IMAGE"
+    ],
+    [
+      6,
+      5,
+      0,
+      6,
+      0,
+      "MODEL"
+    ],
+    [
+      14,
+      6,
+      0,
+      10,
+      0,
+      "MODEL"
+    ],
+    [
+      17,
+      10,
+      0,
+      1,
+      0,
+      "MODEL"
+    ],
+    [
+      31,
+      1,
+      0,
+      25,
+      0,
+      "IMAGE"
+    ]
+  ],
+  "groups": [],
+  "config": {},
+  "extra": {},
+  "version": 0.4
+}
