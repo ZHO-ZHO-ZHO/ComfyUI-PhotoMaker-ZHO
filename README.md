@@ -30,9 +30,12 @@ Unofficial implementation of [PhotoMaker](https://github.com/TencentARC/PhotoMak
 
 - 来自对[PhotoMaker](https://github.com/TencentARC/PhotoMaker)的非官方实现
   
-- 版本：V2.1 节点拆分 + 支持本地模型 + 支持自定义尺寸 +提速3倍 + 支持多图直接输入
+- 版本：V2.5 支持lora、支持多批次、支持通用的styler
+<!---
+节点拆分 + 支持本地模型 + 支持自定义尺寸 +提速3倍 + 支持多图直接输入
+--->
 
-![Dingtalk_20240119022341](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/78595f2c-7f87-477a-9896-007dd24fe8c9)
+![Dingtalk_20240119194547](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/d067fc21-3b51-44bc-b76e-9351a7f6966a)
 
 
 ## 视频演示
@@ -61,10 +64,14 @@ https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/d58af6e7-d0f3
     - 直接模式 | Direct_input：接入单/多张图像（非必要项）
     - 路径模式 | Path_input：自动读取路径中的所有图像
 
-- PhotoMaker 生成 | 📷PhotoMaker Generation
-    - pipe：接入模型
-    - pil_image：接入预处理图像
-    - ptompt、negative：正负提示词
+- Lora模型加载 | 📷LoRALoader 🆕
+    - 支持加载本地 lora 模型
+    - 支持权重调节
+
+ - 提示词 + 风格 | 📷Prompt_Styler 🆕
+    - 与各种提示词（文本）输入（如肖像大师等）、styler兼容
+    - prompt、negative：正负提示词
+    - 支持权重调节
     - style_name：支持官方提供的10种风格
         - (No style)
         - Cinematic
@@ -77,11 +84,18 @@ https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/d58af6e7-d0f3
         - Comic book
         - Lowpoly
         - Line art
+
+- PhotoMaker 生成 | 📷PhotoMaker Generation 🆕
+    - pipe：接入模型
+    - pil_image：接入预处理图像
+    - positivet、negative：正负提示词
+    - batch_size：生成数量
     - style_strength_ratio：风格混合强度（高于30按30计算）
     - step：步数，官方默认50步，但毕竟是基于SDXL模型，我实测下来30步足够了
     - guidance_scale：提示词相关度，一般默认为5
-    - seed：种子
     - width、height：尺寸设置（需1024维度）
+    - seed：种子
+
 
 <!---
 - base_model_path：支持输入huggingface模型名称自动下载模型（如：SG161222/RealVisXL_V3.0）
@@ -126,6 +140,16 @@ https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/d58af6e7-d0f3
 
 ## 工作流 | Workflows
 
+- [V2.5 lora + batch](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/blob/main/PhotoMaker%20Workflows/PhotoMaker_lora_batch%E3%80%90Zho%E3%80%91.json) 🆕
+
+ ![Dingtalk_20240119202403](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/b862b89f-1609-43d9-84a1-5f11a2d1ab2d)
+
+
+- [V2.5 portraitmaster + styler + lora](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/blob/main/PhotoMaker%20Workflows/PhotoMaker_lora_portrait_styler%E3%80%90Zho%E3%80%91.json) 🆕
+
+  ![Dingtalk_20240119201125](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/38e01035-139e-4a89-8982-6f7168684045)
+
+
 - [V2.0 本地模型 locally](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/blob/main/PhotoMaker%20Workflows/PhotoMaker_locally%E3%80%90Zho%E3%80%91.json)
 
   ![QQ截图20240118163432](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/bf6a55ae-767e-4aaf-9f75-6f752bb5b530)
@@ -140,7 +164,15 @@ https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/d58af6e7-d0f3
 
 - 20240119
 
+  更新为 V2.5：支持lora、支持自定义生成数量、支持通用提示词输入（文本）如：styler、portraitmater等
+
+  新增 lora + batch、portraitmaster + styler + lora 两个工作流
+
+- 20240119
+
   更新为 V2.1：参考图改为直接输入/路径输入两种新模式，其中直接输入支持多图
+
+  ![Dingtalk_20240119022341](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/78595f2c-7f87-477a-9896-007dd24fe8c9)
 
 - 20240118
 
