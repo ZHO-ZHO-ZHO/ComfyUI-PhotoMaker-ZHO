@@ -280,7 +280,12 @@ class CompositeImageGenerationNode_Zho:
             img_tensor = img_tensor.unsqueeze(0).permute(0, 2, 3, 1)
             images_tensors.append(img_tensor)
 
-        return images_tensors
+        if len(images_tensors) > 1:
+            output_image = torch.cat(images_tensors, dim=0)
+        else:
+            output_image = images_tensors[0]
+
+        return (output_image,)
 
 
 NODE_CLASS_MAPPINGS = {
