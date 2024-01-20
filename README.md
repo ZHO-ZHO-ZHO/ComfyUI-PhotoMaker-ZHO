@@ -168,6 +168,14 @@ https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/d58af6e7-d0f3
 
 ## 更新日志
 
+- 20240121
+
+  修复 bfloat16 bug
+
+- 20240120
+
+  补充两个基础工作流
+
 - 20240119
 
   更新为 V2.5：支持lora、支持自定义生成数量、支持通用提示词输入（文本）如：styler、portraitmater等
