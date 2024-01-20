@@ -142,14 +142,20 @@ https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/d58af6e7-d0f3
 
 - [V2.5 lora + batch](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/blob/main/PhotoMaker%20Workflows/PhotoMaker_lora_batch%E3%80%90Zho%E3%80%91.json) 🆕
 
- ![Dingtalk_20240119202403](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/b862b89f-1609-43d9-84a1-5f11a2d1ab2d)
+  ![Dingtalk_20240119202403](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/b862b89f-1609-43d9-84a1-5f11a2d1ab2d)
 
 
 - [V2.5 portraitmaster + styler + lora](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/blob/main/PhotoMaker%20Workflows/PhotoMaker_lora_portrait_styler%E3%80%90Zho%E3%80%91.json) 🆕
 
   ![Dingtalk_20240119201125](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/38e01035-139e-4a89-8982-6f7168684045)
 
+- [V2.5 本地模型 locally](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/blob/main/PhotoMaker%20Workflows/V2.5%20PhotoMaker_locally%E3%80%90Zho%E3%80%91.json)
 
+- [V2.5 自动下载 huggingface hub](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/blob/main/PhotoMaker%20Workflows/V2.5%20PhotoMaker_fromhub%E3%80%90Zho%E3%80%91.json)
+
+（注：特意补充了 V2.5 的基础工作流，V2.0 工作流已弃用）
+
+<!---
 - [V2.0 本地模型 locally](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/blob/main/PhotoMaker%20Workflows/PhotoMaker_locally%E3%80%90Zho%E3%80%91.json)
 
   ![QQ截图20240118163432](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/bf6a55ae-767e-4aaf-9f75-6f752bb5b530)
@@ -158,7 +164,7 @@ https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/d58af6e7-d0f3
 - [V2.0 自动下载 huggingface hub](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/blob/main/PhotoMaker%20Workflows/PhotoMaker_fromhub%E3%80%90Zho%E3%80%91.json) 
 
   ![QQ截图20240118163252](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/f645c1b7-2548-45fc-b388-0ebe62e2724d)
-
+--->
 
 ## 更新日志
 
