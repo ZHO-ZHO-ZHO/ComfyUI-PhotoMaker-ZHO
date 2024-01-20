@@ -44,7 +44,7 @@ class BaseModelLoader_fromhub_Node_Zho:
         # Code to load the base model
         pipe = PhotoMakerStableDiffusionXLPipeline.from_pretrained(
             base_model_path,
-            torch_dtype=torch.bfloat16,
+            torch_dtype=torch.float16,
             use_safetensors=True,
             variant="fp16"
         ).to(device)
@@ -80,7 +80,7 @@ class BaseModelLoader_local_Node_Zho:
                 
         pipe = PhotoMakerStableDiffusionXLPipeline.from_single_file(
             pretrained_model_link_or_path=ckpt_path,
-            torch_dtype=torch.bfloat16,
+            torch_dtype=torch.float16,
             use_safetensors=True,
             variant="fp16"
         ).to(device)
