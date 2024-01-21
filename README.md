@@ -75,7 +75,7 @@ https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/d58af6e7-d0f3
     - style_name：支持官方提供的10种风格
         - (No style)
         - Cinematic
-        - Disney Charactor
+        - Disney Character
         - Digital Art
         - Photographic (Default)
         - Fantasy art
