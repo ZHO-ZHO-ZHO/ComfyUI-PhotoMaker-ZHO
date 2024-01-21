@@ -140,6 +140,12 @@ https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/d58af6e7-d0f3
 
 ## 工作流 | Workflows
 
+
+- [V2.5 Disney-Character_PhotoMaker + DragNUWA](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/blob/main/PhotoMaker%20Workflows/Disney-Character_PhotoMaker%2BDragNUW%E3%80%90Zho%E3%80%91.json) 🆕
+
+  https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/ca2bfff4-701c-4960-ac11-b893f90c044c
+
+
 - [V2.5 lora + batch](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/blob/main/PhotoMaker%20Workflows/PhotoMaker_lora_batch%E3%80%90Zho%E3%80%91.json) 🆕
 
   ![Dingtalk_20240119202403](https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/b862b89f-1609-43d9-84a1-5f11a2d1ab2d)
@@ -167,6 +173,10 @@ https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker/assets/140084057/d58af6e7-d0f3
 --->
 
 ## 更新日志
+
+- 20240122
+
+  新增 Disney-Character: PhotoMaker + DragNUWA 工作流，可配合 DragNUWA 融合多个人物特征生成迪士尼风格大片！
 
 - 20240121
 
