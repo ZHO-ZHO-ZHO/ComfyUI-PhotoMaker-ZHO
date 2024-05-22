@@ -1,0 +1,15 @@
+[project]
+name = "comfyui-photomaker-zho"
+description = "Unofficial implementation of [a/PhotoMaker](https://github.com/TencentARC/PhotoMaker) for ComfyUI"
+version = "1.0.0"
+license = "LICENSE"
+dependencies = ["diffusers==0.25.0", "transformers==4.36.2", "huggingface-hub==0.20.2", "spaces==0.19.4", "numpy", "accelerate", "safetensors", "omegaconf", "peft"]
+
+[project.urls]
+Repository = "https://github.com/ZHO-ZHO-ZHO/ComfyUI-PhotoMaker-ZHO"
+#  Used by Comfy Registry https://comfyregistry.org
+
+[tool.comfy]
+PublisherId = ""
+DisplayName = "ComfyUI-PhotoMaker-ZHO"
+Icon = ""
